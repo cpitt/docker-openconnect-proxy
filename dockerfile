@@ -1,18 +1,15 @@
-FROM ubuntu
-RUN  apt-get update -qq \
-      && apt-get install -y -qq \
+FROM alpine:3.12
+RUN apk add --update --no-cache \
+      --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+      bash \
       curl \
-      openconnect \
-      iptables \
-      git \
-      gcc \ 
-      make \
-      git  \
-      make \
       dumb-init \
-      && apt-get clean \
-      && rm -rf /var/cache/apt/* \
-      && rm -rf /var/lib/apt/lists/*
+      git  \
+      iptables \
+      make \
+      build-base \
+      openconnect \
+      xmlstarlet
 
 RUN mkdir /build \
       && cd /build \
@@ -27,4 +24,4 @@ ADD ./scripts ./scripts
 ADD https://gitlab.com/openconnect/openconnect/-/raw/master/trojans/csd-post.sh ./scripts/csd.sh
 RUN chmod 755 ./scripts/*
 
-ENTRYPOINT [ "./scripts/entrypoint.sh" ]
+ENTRYPOINT [  "dumb-init", "./scripts/entrypoint.sh" ]
