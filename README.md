@@ -12,7 +12,12 @@ don't want to route all of your host traffic through it.
 1. Start the vpn and follow prompts
 
 ```sh
-docker run -it --rm --privileged -p 1080:1080 --cap-add=ALL cpitt/openconnect-proxy <VPN_URL> <OPENCONNECT_OPTION>
+docker run -it \
+  --rm \
+  --privileged \
+  -p 1080:1080 \
+  --cap-add=NET_ADMIN \
+  cpitt/openconnect-proxy <VPN_URL> <OPENCONNECT_OPTION>
 ```
 
 2.  Configure your application proxy requests through localhost:1080. For
