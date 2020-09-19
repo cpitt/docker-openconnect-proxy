@@ -1,6 +1,6 @@
 # Docker Open Connect Proxy
 
-A Docker container that connects a cisco vpns and starts a small socks proxy.
+A Docker container that connects a cisco vpn thate requires a CSD (Cisco Secure Desktop) check and starts a small socks proxy.
 
 ## Why?
 
