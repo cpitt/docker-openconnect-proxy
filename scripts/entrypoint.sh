@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
 export VPN_URL=$1
 export CSD_HOST=${VPN_URL}
 shift;
