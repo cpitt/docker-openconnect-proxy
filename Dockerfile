@@ -9,6 +9,7 @@ RUN apk add --update --no-cache \
       make \
       build-base \
       openconnect \
+      tinyproxy \
       xmlstarlet
 
 RUN mkdir /build \
@@ -18,6 +19,11 @@ RUN mkdir /build \
       && make \
       && make install \
       && rm -R /build
+
+RUN sed -i -e '/^Allow /s/^/#/' \
+      -e '/^ConnectPort /s/^/#/' \
+      -e '/^#DisableViaHeader /s/^#//' \
+      /etc/tinyproxy/tinyproxy.conf
 
 
 ADD ./scripts ./scripts

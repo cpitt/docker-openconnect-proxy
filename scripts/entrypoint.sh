@@ -7,6 +7,6 @@ shift;
 iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
 
 echo "Starting VPN"
-openconnect ${@} ${VPN_URL} --csd-user=root --csd-wrapper=/scripts/csd.sh -b &&
-  microsocks
+openconnect ${@} ${VPN_URL} --csd-user=root --csd-wrapper=/scripts/csd.sh -b \
+  && tinyproxy -d
 
